@@ -5,6 +5,35 @@
   <title>Our Wedding Invitation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    .photo-container {
+      position: relative;
+      display: inline-block;       /* shrink‑to‑fit the image */
+    }
+    .photo-container img {
+      display: block;              /* remove inline‑img whitespace */
+      width: 100%;                 /* or fixed width if you prefer */
+      height: auto;
+    }
+    .photo-caption {
+  position: absolute;
+    bottom: 0;  
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    /* background: rgba(0, 0, 0, 0.5);  ← remove or comment this out */
+    background: transparent;          /* instead, make it fully transparent */
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+    /* optional: add a light text‑shadow if you still need contrast against the image */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  #header-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
+    color: black;
+  }
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -12,79 +41,182 @@
       margin: 0;
       padding: 0;
     }
-    header {
-      background-color: #fff;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-    section {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
     img {
       max-width: 100%;
       height: auto;
       border-radius: 4px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    input, textarea {
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #responseMessage {
-      margin-top: 15px;
-      font-weight: bold;
-    }
+    .rsvp-form {
+  background: rgba(255, 255, 255, 0.9);
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+/* Heading & subtitle */
+.rsvp-form h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.rsvp-form p.subtitle {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Radio options */
+.options {
+  margin-bottom: 1.5rem;
+}
+.options input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.options label {
+  display: block;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+/* Unchecked circle */
+.options label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+/* Checked dot */
+.options input[type="radio"]:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.4rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #333;
+  border-radius: 50%;
+}
+
+/* Name input */
+.name-input {
+  margin-bottom: 1.5rem;
+}
+.name-input input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem;
+  color: #333;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background: transparent;
+  outline: none;
+}
+.name-input input::placeholder {
+  color: #888;
+}
+
+/* Submit button */
+.rsvp-form button {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem;
+  color: #fff;
+  background: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.rsvp-form button:hover {
+  opacity: 0.8;
+}
   </style>
 </head>
 <body>
-  <header>
-    <h1>You're Invited!</h1>
-    <p>Please join us for our wedding celebration!</p>
-  </header>
 
-  <section>
-    <img src="wedding_photo.jpg" alt="Wedding Photo">
-    <p>We are thrilled to invite you to our wedding on [Date] at [Venue]. Please take a moment to RSVP below.</p>
-  </section>
 
-  <section>
-    <h2>RSVP</h2>
-    <form id="rsvpForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message (Optional)"></textarea>
-      <button type="submit">Submit RSVP</button>
-    </form>
-    <div id="responseMessage"></div>
-  </section>
+  <div class="photo-container">
+    <img src="1.jpeg" alt="Wedding Photo">
+    <p id="header-text" class="photo-caption">Anelya Qyz Uzatu</p>
+  </div>
+  <div class="photo-container">
+    <img src="2.jpeg" alt="Wedding Photo">
+    <p id="header-text" class="photo-caption">
+      Құрметті
+      <br>
+      ағайын-туыс, бауырлар, нағашы-жиен, бөлелер,
+      <br>
+      құда-жекжат, дос-жарандар,
+      <br>
+      әріптестер, көршілер!
+    </p>
+  </div>
+    <div class="photo-container">
+    <img src="calendar.png" alt="Wedding Photo">
+  </div>
+  </div>
+  <div class="photo-container">
+  <img src="5.png" alt="Wedding Photo">
+  </div>
+  <div class="photo-container">
+    <img src="3.jpeg" alt="Wedding Photo">
+    <p id="header-text" class="photo-caption">
+      сіздерді тойымызға шақырамыз!
+    </p>
+  </div>
+  <div class="photo-container">
+    <img src="4.jpeg" alt="Wedding Photo">
+    <p id="header-text" class="photo-caption">
+      мекен жайымыз
+    </p>
+  </div>
+
+  <form class="rsvp-form" action="#" method="POST">
+    <h1>Тойға келесіз бе?</h1>
+    <p class="subtitle">Жұбыңызбен келетін болсаңыз, екі есімді де көрсетіңіз</p>
+
+    <div class="options">
+      <input type="radio" id="yes-alone" name="attendance" value="yes" />
+      <label for="yes-alone">Ия, келемін</label>
+
+      <input type="radio" id="yes-with" name="attendance" value="with" />
+      <label for="yes-with">Жолдасыммен келемін</label>
+
+      <input type="radio" id="no" name="attendance" value="no" />
+      <label for="no">Өкінішке орай келе алмаймын</label>
+    </div>
+
+    <div class="name-input">
+      <input
+        type="text"
+        name="guest_name"
+        placeholder="Есіміңіз"
+        required
+      />
+    </div>
+
+    <button type="submit">Жіберу</button>
+  </form>
+  <p id="responseMessage" style="text-align:center; margin-top:1rem;"></p>
 
   <!-- Link to external JavaScript -->
   <script src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"
+/>
 </body>
 </html>
