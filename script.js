@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('background-music');
+  const playButton = document.getElementById('playMusicButton');
+
+  playButton.addEventListener('click', () => {
+    audio.volume = 1.0;
+    audio.play()
+      .then(() => {
+        playButton.textContent = "Ойнап жатыр 🎶";
+        playButton.disabled = true;
+      })
+      .catch(err => {
+        console.error("Failed to play audio:", err);
+        playButton.textContent = "Қайталап көріңіз ❌";
+      });
+  });
   const form         = document.querySelector('.rsvp-form');
   const overlay      = document.getElementById('overlay');
   const modal        = document.getElementById('thankyouModal');

@@ -162,6 +162,24 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.music-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 10010;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: opacity 0.2s;
+}
+.music-button:hover {
+  opacity: 0.8;
+}
 
 /* keyframes for rotation */
 @keyframes spin {
@@ -170,6 +188,8 @@
   </style>
 </head>
 <body>
+  <audio id="background-music" src="music.mp3" preload="auto"></audio>
+  <button id="playMusicButton" class="music-button">Ойнату 🎵</button>
   <div id="overlay">
     <div class="spinner"></div>
   </div>
